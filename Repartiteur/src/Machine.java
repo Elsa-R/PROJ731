@@ -4,6 +4,7 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface Machine extends Remote {
-	public byte[] lecture(String donnees) throws RemoteException, FileNotFoundException, IOException;
-	public Boolean ecriture(String nom, byte[] donnees) throws RemoteException, FileNotFoundException, IOException;
+	public String lecture(String donnees) throws RemoteException, FileNotFoundException, IOException;
+	public Boolean ecriture(String nom, String donnees) throws RemoteException, FileNotFoundException, IOException;
+	public String getNom() throws RemoteException;
 }
