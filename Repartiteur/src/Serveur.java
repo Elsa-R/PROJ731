@@ -89,13 +89,13 @@ public class Serveur implements Machine {
 			registry.bind("Maurice", m2);
 			
 			// Creation d'un aiguilleur de type Machine						
-			Aiguilleur a1 = new Aiguilleur("Aiguilleur");
-			a1.addMachine(m1);
-			a1.addMachine(m2);
+			//Aiguilleur a1 = new Aiguilleur("Aiguilleur");
+	//		a1.addMachine(m1);
+		//	a1.addMachine(m2);
 								
 			// Exportation de l'aiguilleur et registration
-			UnicastRemoteObject.exportObject(a1, 0);
-			registry.bind("Aiguilleur", a1);
+	//		UnicastRemoteObject.exportObject(a1, 0);
+		//	registry.bind("Aiguilleur", a1);
 			
 			} catch (Exception e) {
 				System.err.println("Server exception: " + e.toString());

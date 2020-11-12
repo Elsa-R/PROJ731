@@ -1,6 +1,9 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Set;
@@ -82,4 +85,23 @@ public class Aiguilleur implements AiguilleurInterface {
 		System.out.println("Aiguilleur registerClient");
     }
 
+    public static void main(String args[]) {
+		try {
+			Registry registry = LocateRegistry.getRegistry("localhost");
+			Machine m1 = (Machine) registry.lookup("Bob");
+			Machine m2 = (Machine) registry.lookup("Maurice");
+			// Creation d'un aiguilleur de type Machine						
+			Aiguilleur a1 = new Aiguilleur("Aiguilleur");
+			a1.addMachine(m1);
+			a1.addMachine(m2);
+								
+			// Exportation de l'aiguilleur et registration
+			UnicastRemoteObject.exportObject(a1, 0);
+			registry.bind("Aiguilleur", a1);
+			
+			} catch (Exception e) {
+				System.err.println("Server exception: " + e.toString());
+		    }
+		System.out.println("End of main");
+	}
 }
